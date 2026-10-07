@@ -351,16 +351,18 @@
   let heroST = null;
 
   /* ---------- reconstrucción al cruzar el quiebre (rotar un iPad): se conserva la sección ---------- */
-  let wide = window.innerWidth >= 900, anchor = null;
+  let wide = window.innerWidth >= 900, anchor = null, lastAnchor = null, rec = 0;
+  const secs = $$('main > section, main > div, .pie');
+  const recordAnchor = () => {
+    rec = 0;
+    const top = window.scrollY;
+    const cur = secs.find(s => s.offsetTop + s.offsetHeight > top) || secs[0];
+    lastAnchor = { el: cur, f: (top - cur.offsetTop) / Math.max(1, cur.offsetHeight) };
+  };
+  window.addEventListener('scroll', () => { if (!rec) rec = requestAnimationFrame(recordAnchor); }, { passive: true });
   ScrollTrigger.addEventListener('refreshInit', () => {
     const nowWide = window.innerWidth >= 900;
-    if (nowWide !== wide) {
-      const secs = $$('main > section, main > div, .pie');
-      const top = window.scrollY;
-      const cur = secs.find(s => s.offsetTop + s.offsetHeight > top) || secs[0];
-      anchor = { el: cur, f: (top - cur.offsetTop) / Math.max(1, cur.offsetHeight) };
-      wide = nowWide;
-    }
+    if (nowWide !== wide) { anchor = lastAnchor; wide = nowWide; }
     frescosSize();
   });
   ScrollTrigger.addEventListener('refresh', () => {
