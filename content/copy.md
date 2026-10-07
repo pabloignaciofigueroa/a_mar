@@ -22,7 +22,7 @@ Correcciones mínimas documentadas al final. El texto de marca no se traduce: en
 - Rótulo [UI]: La casa — EN: The house
 - Titular: Puro Amor en A🩵MAR [IG-04] (el 🩵 se dibuja con el isotipo, que es lo que el corazón celeste representa en sus textos)
 - Productos: Ostras · Erizos · Centolla · Pulpo · Chapaleles · Murta [IG-05, 07, 06, 08, 08, 14]
-- Bloque de datos: Restaurant A MAR [BIO] · Cocina de Mar… y Tierra [BIO] · Apertura: Viernes 08 de Mayo [IG-13]
+- Bloque de datos: Viernes 08 de Mayo [IG-13] · Stripcenter Gamboa / Local 109 [BIO]
 - Rótulos [UI]: Desde — EN: Since · Dónde — EN: Where
 
 ## 4. Cinta
@@ -30,7 +30,7 @@ Correcciones mínimas documentadas al final. El texto de marca no se traduce: en
 
 ## 5. Siempre frescos (galería horizontal)
 - Titular: Siempre frescos [IG-07]
-- Rótulo [UI]: De la carta — EN: From the menu
+- Rótulo [UI]: En Instagram — EN: On Instagram (la carta no está publicada; los platos vienen de sus posts)
 - 01 Ostras Frescas — Siempre en A MAR [IG-05: "Ostras Frescas 🦪 Siempre en @amar_chiloe"]
 - 02 Sorrentinos de Centolla — nuestro Hit de Otoño [IG-06]
 - 03 Erizos Frescos! — Siempre frescos [IG-07]
@@ -47,16 +47,17 @@ Correcciones mínimas documentadas al final. El texto de marca no se traduce: en
 - 25 abr — Pronto… una invitación a A🩵MAR!! [IG-19]
 - 26 abr — Pronto… [IG-18] (individual estampado)
 - 27 abr — Casi Listos! [IG-17] (barra)
-- 29 abr — Afinando Detalles… [IG-16] (espejo)
-- 30 abr — Salud! Por los nuevos proyectos 👊 [IG-15] (espumante)
-- 01 may — El Mejor Murta Sour estará en “A MAR” [IG-14]
-- 07 may — Apertura · Viernes 08 de Mayo / Desde las 19:00 hrs [IG-13] (textil)
-- 09 may — Día Soñado! [IG-12] (fachada)
+- 28 abr — Afinando Detalles… [IG-16] (espejo)
+- 29 abr — Salud! Por los nuevos proyectos 👊 [IG-15] (espumante)
+- 30 abr — El Mejor Murta Sour estará en “A MAR” [IG-14] (copas)
+- 07 may — ✨Apertura✨… Viernes 08 de Mayo / Desde las 19:00 hrs [IG-13] (textil)
+- 08 may — Día Soñado! [IG-12] (fachada)
+(Fechas de Instagram convertidas de UTC a hora de Chile.)
 - Fechas [UI]: abr/may — EN: Apr/May
 
 ## 8. Reseñas
 - Rótulo [UI]: Reseñas — EN: Reviews
-- Notas [DATO]: 5,0 · 9 reseñas en Google · 4,5 · 4 opiniones en Tripadvisor (EN: reviews on Google / reviews on Tripadvisor)
+- Notas [DATO]: 5,0 · 9 reseñas en Google · 4,5 · 4 opiniones en Tripadvisor (EN: 5.0 / 4.5, reviews on Google / reviews on Tripadvisor)
 - Carrusel internacional [RESEÑA] (ver content/brand-voice.md): Alejandra, carol, Mauricio, Sammy, Viviana (Miami, Florida · Estados Unidos), Peter (alemán), Catalina, Andres, Abel.
 - Firma [UI]: vía Google / vía Tripadvisor — EN: via Google / via Tripadvisor
 - Prensa: NiTanRetro FM — "…destaca por su propuesta gastronómica centrada en los productos del mar y la cocina chilota contemporánea." [RESEÑA prensa, IG @radio_nitanretro 19-06-2026]
@@ -66,7 +67,7 @@ Correcciones mínimas documentadas al final. El texto de marca no se traduce: en
 - | Martes a Sábado | 13:00 hrs a 16:30 hrs · 18:30 hrs a 22:00 hrs [IG-02]
 - | Domingo | 13:00 hrs a 17:00 hrs [IG-02]
 - | Lunes | Cerrado [IG-02]
-- Estado en vivo [UI]: Abierto ahora / Cerrado ahora (hora de Chile) — EN: Open now / Closed now
+- Estado en vivo [UI]: Abierto ahora / Cerrado ahora (se calcula con la hora de Chile) — EN: Open now / Closed now
 - Foto: rosas y cartel "Abierto" [IG-09]
 
 ## 10. Visítanos
@@ -90,4 +91,6 @@ Correcciones mínimas documentadas al final. El texto de marca no se traduce: en
 ## Correcciones mínimas
 - "Espacio hecho con Amor ❤️" → sin el emoji en el titular grande (se conserva la palabra).
 - "Ostras Frescas 🦪 Siempre en @amar_chiloe" → "Ostras Frescas — Siempre en A MAR" (la arroba se reemplaza por el nombre, dentro de su propio sitio).
-- Reseñas: se respetan ortografía y puntuación originales ("a- mar", "Recomendadisimo", "excelent").
+- Reseñas: se respetan ortografía y puntuación originales ("a- mar", "carol" en minúscula, "De lux").
+- "✨Apertura✨Restaurant A Mar Chiloé✨🐟🐙🦐🦀 Viernes 08 de Mayo…" → "✨Apertura✨… Viernes 08 de Mayo / Desde las 19:00 hrs" (tramo omitido marcado con "…").
+- Meta description: frases de la bio unidas con "·".

@@ -63,6 +63,7 @@
 ### Por confirmar con el cliente
 - Horario: la lámina vigente [IG-02] dice cortado (13:00–16:30 / 18:30–22:00); Google y Tripadvisor dicen corrido 13:00–22:30; el post [IG-00] del 3-oct dice "Sábado 13:00 a 22:00". En el sitio se usa la lámina [IG-02], que es lo que la marca publicó, con la bio como resumen.
 - Carta y precios: no están publicados. Google muestra rango declarado por clientes ($15.000–30.000 por persona); no se usa.
+- "nuestro Hit de Otoño" (sorrentinos, mayo): es literal, pero hoy es primavera; confirmar si sigue en carta.
 - Nombre del encargado de sala (Maximiliano, mencionado en dos reseñas) y de la chef: no se usan hasta confirmar.
 
 ## Reseñas seleccionadas (literales, en su idioma)
@@ -77,7 +78,7 @@ Google (5,0 · 9 reseñas):
 
 Tripadvisor (4,5 · 4 opiniones):
 7. **carol** · vía Tripadvisor · ★5 — "Excelente la atención, el lugar es precioso y la comida insuperable; las mejores ostras, erizos y sorrentinos de centolla. Un imperdible en Castro."
-8. **Viviana** · Miami, Florida (Estados Unidos) · vía Tripadvisor · ★5 — "Muy buena experiencia, gratamente sorprendidos, el lugar es acogedor, la comida increíble… sorrentinos de centolla 10/10…"
+8. **Viviana** · Miami, Florida, Estados Unidos · vía Tripadvisor · ★5 — "Muy buena experiencia, gratamente sorprendidos, el lugar es acogedor, la comida increíble… sorrentinos de centolla 10/10…"
 9. **Abel** · vía Tripadvisor · ★5 — "De lux exquisito y super bien atendido"
 - No se usa: Baruka R (★3, reseña mixta) — se respeta la nota global 4,5.
 

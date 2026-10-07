@@ -16,11 +16,12 @@
   let lenis = null;
 
   /* ---------- precarga: la página queda inerte hasta que se retira ---------- */
-  const setInert = (on) => [main, pie, nav].forEach(el => { if (el) el.inert = on; });
+  const skip = $('.skip');
+  const setInert = (on) => [main, pie, nav, skip].forEach(el => { if (el) el.inert = on; });
   if (pre && !reduced) setInert(true);
   const fontsReady = () => {
     if (!document.fonts || !document.fonts.load) return Promise.resolve();
-    const faces = ['400 1em Italiana', '400 1em Gelasio', 'italic 400 1em Gelasio', 'italic 700 1em Gelasio'];
+    const faces = ['400 1em Italiana', '400 1em Gelasio', 'italic 400 1em Gelasio'];
     return Promise.allSettled(faces.map(f => document.fonts.load(f)));
   };
   const heroImg = $('.hero__img');
@@ -73,7 +74,8 @@
     } catch (e) { el.textContent = ''; return; }
     const open = HOURS[d].some(([a, b]) => m >= a && m < b);
     el.classList.toggle('is-open', open);
-    el.textContent = open ? (lang === 'en' ? 'Open now' : 'Abierto ahora') : (lang === 'en' ? 'Closed now' : 'Cerrado ahora');
+    const txt = open ? (lang === 'en' ? 'Open now' : 'Abierto ahora') : (lang === 'en' ? 'Closed now' : 'Cerrado ahora');
+    if (el.textContent !== txt) el.textContent = txt;
     $$('.lamina__dl [data-days]').forEach(row => row.classList.toggle('is-today', row.dataset.days.split(',').includes(String(d))));
   }
   estado();
@@ -180,6 +182,15 @@
     const s = document.createElement('script'); s.src = 'vendor/swiper/swiper-bundle.min.js'; s.onload = res; s.onerror = rej; document.head.appendChild(s);
   }));
   const pad = n => String(n).padStart(2, '0');
+  /* si el botón con foco queda deshabilitado, el foco pasa al contrario (no se pierde en <body>) */
+  let ctrlTs = 0;
+  $('.resenas__ctrl')?.addEventListener('focusin', () => { ctrlTs = Date.now(); });
+  $('.resenas__ctrl')?.addEventListener('click', () => { ctrlTs = Date.now(); });
+  const keepFocus = (from, to) => requestAnimationFrame(() => {
+    const a = $(from), b = $(to), act = document.activeElement;
+    if (!a || !b || Date.now() - ctrlTs > 2000) return;
+    if ((act === a || act === document.body) && (a.disabled || a.getAttribute('aria-disabled') === 'true')) b.focus({ preventScroll: true });
+  });
   function buildSwiper() {
     const el = $('#resenasSlider');
     if (!el || !window.Swiper) return;
@@ -201,7 +212,11 @@
         containerRoleDescriptionMessage: en ? 'carousel' : 'carrusel',
         itemRoleDescriptionMessage: en ? 'review' : 'reseña'
       },
-      on: { slideChange(s) { $('#rsNow').textContent = pad(s.realIndex + 1); } }
+      on: {
+        slideChange(s) { $('#rsNow').textContent = pad(s.isEnd ? s.slides.length : s.realIndex + 1); },
+        reachEnd(s) { $('#rsNow').textContent = pad(s.slides.length); keepFocus('.resenas__next', '.resenas__prev'); },
+        reachBeginning() { keepFocus('.resenas__prev', '.resenas__next'); }
+      }
     });
     $('#rsAll').textContent = pad(swiper.slides.length);
     $('#rsNow').textContent = pad(swiper.realIndex + 1);
@@ -238,13 +253,15 @@
       const s = document.createElement('script'); s.src = 'vendor/leaflet/leaflet.js';
       s.onload = () => {
         const box = document.createElement('div'); box.className = 'mapa__live'; box.style.cssText = 'position:absolute;inset:0;opacity:0;transition:opacity .8s';
+        box.inert = true;
         mapa.appendChild(box);
         const P = [-42.4805899, -73.7720604];
         const map = L.map(box, { scrollWheelZoom: false, zoomControl: false, attributionControl: true, keyboard: false }).setView(P, 16);
-        let fails = 0, loaded = 0;
+        let loaded = 0;
+        map.attributionControl.setPrefix(false);
+        setTimeout(() => { if (!loaded) { map.remove(); box.remove(); } }, 5000);
         const tiles = L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', { maxZoom: 19, attribution: '© OpenStreetMap · © CARTO' });
-        tiles.on('tileload', () => { if (++loaded === 1) box.style.opacity = '1'; });
-        tiles.on('tileerror', () => { if (++fails > 6 && !loaded) box.remove(); });
+        tiles.on('tileload', () => { if (++loaded === 1) { box.style.opacity = '1'; box.inert = false; } });
         tiles.addTo(map);
         const isoSvg = $('.lamina__iso');
         const icon = L.divIcon({ className: '', iconSize: [46, 46], iconAnchor: [23, 23], html: '<span class="pin">' + (isoSvg ? isoSvg.outerHTML.replace('lamina__iso', '') : '') + '</span>' });
@@ -263,12 +280,24 @@
     for (let i = 0; i < 2; i++) kids.forEach(k => cinta.appendChild(k.cloneNode(true)));
   }
 
-  if (!hasGsap) { pre?.remove(); setInert(false); return; }
+  /* respaldo común (sin GSAP o sin movimiento): conservar la sección al cruzar 900 px */
+  const secsAll = $$('main > section, main > div, .pie');
+  const anchorNow = () => { const top = window.scrollY; const cur = secsAll.find(x => x.offsetTop + x.offsetHeight > top) || secsAll[0]; return { el: cur, f: (top - cur.offsetTop) / Math.max(1, cur.offsetHeight) }; };
+  const plainKeep = () => {
+    let last = anchorNow(), t = 0;
+    window.addEventListener('scroll', () => { if (!t) t = requestAnimationFrame(() => { t = 0; last = anchorNow(); }); }, { passive: true });
+    window.matchMedia('(min-width: 900px)').addEventListener('change', () => requestAnimationFrame(() => window.scrollTo(0, last.el.offsetTop + last.f * last.el.offsetHeight)));
+  };
+  if (!hasGsap) {
+    html.classList.add('reduced'); pre?.remove(); setInert(false); plainKeep();
+    if (store.get('amar-lang') === 'en') setLang('en');
+    return;
+  }
   gsap.registerPlugin(ScrollTrigger);
 
   /* sin movimiento: todo visible, nada se anima */
   if (!motion) {
-    pre?.remove(); setInert(false);
+    pre?.remove(); setInert(false); plainKeep();
     const saved = store.get('amar-lang'); if (saved === 'en') setLang('en');
     return;
   }
@@ -284,7 +313,7 @@
 
   /* ---------- portada: entrada ---------- */
   function intro() {
-    const tl = gsap.timeline({ defaults: { ease: EASE } });
+    const tl = gsap.timeline({ defaults: { ease: EASE }, onInterrupt: () => { introDone = true; } });
     if (pre) tl.to(pre, { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut', onComplete: () => { pre.remove(); setInert(false); } });
     else setInert(false);
     tl.to('.hero__iso', { scale: 1, rotate: 0, opacity: 1, duration: 1.4 }, pre ? '-=0.55' : 0)
@@ -308,7 +337,7 @@
   const OX = 0.70, OY = 0.585; // punto dentro de la ola del medio
   let geo = null;
   function measure() {
-    const r = iso.getBoundingClientRect(), s = sticky.getBoundingClientRect();
+    const r = iso.parentElement.getBoundingClientRect(), s = sticky.getBoundingClientRect();
     const w = r.width, h = w * RATIO;
     geo = { x: r.left - s.left, y: r.top - s.top, w, h, vw: s.width, vh: s.height };
     const ox = geo.x + OX * w, oy = geo.y + OY * h;
@@ -321,6 +350,8 @@
   let claimOn = false;
   const clamp01 = v => Math.min(1, Math.max(0, v));
   const map = (p, a, b) => clamp01((p - a) / (b - a));
+  let introTl = null, introDone = false;
+  const nA = $('.hero__a'), nM = $('.hero__mar'), nTop = $$('.hero__kicker, .hero__tag'), nFoot = $$('.hero__foot, .hero__cue');
   function apply(p) {
     if (!geo) measure();
     const { x, y, w, h, vw, K } = geo;
@@ -340,11 +371,15 @@
     iso.style.opacity = 1 - a;
     const o = map(p, 0.03, 0.4);
     const ex = gsap.parseEase('power2.in')(o);
-    gsap.set('.hero__a', { x: -vw * 0.32 * ex, opacity: 1 - map(p, 0.12, 0.42) });
-    gsap.set('.hero__mar', { x: vw * 0.32 * ex, opacity: 1 - map(p, 0.12, 0.42) });
-    const f = 1 - map(p, 0.01, 0.12);
-    gsap.set(['.hero__kicker', '.hero__tag'], { opacity: f, y: -30 * (1 - f) });
-    gsap.set(['.hero__foot', '.hero__cue'], { opacity: f * 0.8 });
+    if (!introDone && p >= 0.01 && introTl) { introTl.progress(1); introDone = true; }
+    if (!introDone && p < 0.01) { /* la entrada manda */ }
+    else {
+      gsap.set(nA, { x: -vw * 0.32 * ex, opacity: 1 - map(p, 0.12, 0.42), yPercent: 0 });
+      gsap.set(nM, { x: vw * 0.32 * ex, opacity: 1 - map(p, 0.12, 0.42), yPercent: 0 });
+      const f = 1 - map(p, 0.01, 0.12);
+      gsap.set(nTop, { opacity: f, y: -30 * (1 - f) });
+      gsap.set(nFoot, { opacity: f * 0.8, y: 0 });
+    }
     const want = p > 0.8;
     if (want !== claimOn) { claimOn = want; want ? claimTl.play() : claimTl.reverse(); }
   }
@@ -370,7 +405,7 @@
     if (heroST) apply(heroST.progress);
     if (anchor) {
       const y = anchor.el.offsetTop + anchor.f * anchor.el.offsetHeight; anchor = null;
-      lenis ? lenis.scrollTo(y, { immediate: true }) : window.scrollTo(0, y);
+      if (lenis) { lenis.resize(); lenis.scrollTo(y, { immediate: true, force: true }); } else window.scrollTo(0, y);
     }
   });
 
@@ -387,11 +422,18 @@
   /* ---------- arranque ---------- */
   ready.then(() => {
     const saved = store.get('amar-lang'); if (saved === 'en') setLang('en');
-    intro();
+    introTl = intro();
+    introTl.eventCallback('onComplete', () => { introDone = true; });
+    if (introTl.progress() === 1) introDone = true;
 
     heroST = ScrollTrigger.create({ trigger: hero, start: 'top top', end: 'bottom bottom', scrub: true, onUpdate: s => apply(s.progress), onRefresh: s => { geo = null; apply(s.progress); } });
 
     gsap.to(frRow, { x: () => -frDist, ease: 'none', scrollTrigger: { trigger: fr, start: 'top top', end: 'bottom bottom', scrub: true, invalidateOnRefresh: true, onUpdate: s => gsap.set('.frescos__bar i', { scaleX: s.progress }) } });
+    frRow.addEventListener('focusin', (e) => {
+      const d = e.target.closest('.dish'); if (!d) return;
+      const y = fr.offsetTop + Math.min(frDist, Math.max(0, d.offsetLeft - 40));
+      lenis ? lenis.scrollTo(y, { immediate: true }) : window.scrollTo(0, y);
+    });
     gsap.to($$('.dish__img'), { scale: 1, duration: 1.6, ease: EASE, stagger: 0.08, scrollTrigger: { trigger: fr, start: 'top 60%', once: true } });
 
     /* titulares por líneas */
@@ -444,13 +486,15 @@
 
     /* cinta */
     if (cinta) {
-      let x = 0, dir = 1;
+      let x = 0, dir = 1, half = cinta.scrollWidth / 3, visible = false;
+      ScrollTrigger.addEventListener('refresh', () => { half = cinta.scrollWidth / 3; });
+      new IntersectionObserver(es => { visible = es[0].isIntersecting; }).observe(cinta.parentElement);
       gsap.ticker.add((t, dt) => {
+        if (!visible || !half) return;
         const v = lenis ? lenis.velocity : 0;
         if (v > 0.2) dir = 1; else if (v < -0.2) dir = -1;
-        x -= (0.05 + Math.min(Math.abs(v) * 0.04, 0.9)) * dir * dt;
-        const half = cinta.scrollWidth / 3;
-        if (x < -half) x += half; if (x > 0) x -= half;
+        x -= (0.05 + Math.min(Math.abs(v) * 0.04, 0.9)) * dir * Math.min(dt, 100);
+        x = -((((-x) % half) + half) % half);
         cinta.style.transform = `translate3d(${x}px,0,0)`;
       });
     }

@@ -48,8 +48,8 @@ with sync_playwright() as p:
     # idioma
     pg=b.new_page(viewport={'width':1366,'height':800}); pg.goto(PUB); pg.wait_for_timeout(3600)
     pg.click('#lang'); pg.wait_for_timeout(400)
-    st=pg.evaluate("({lang:document.documentElement.lang,title:document.title,book:document.querySelector('.nav__book').textContent,alt:document.querySelector('.casa__img').alt,meta:document.querySelector('meta[name=description]').content.slice(0,20),aria:document.querySelector('#lang').getAttribute('aria-label'),brand:document.querySelector('.hero__tag').textContent})")
-    check(st['lang']=='en' and st['book']=='Book' and st['alt'].startswith('A set table') and st['meta'].startswith('Restaurant A MAR, se') and 'Spanish' in st['aria'] and st['aria'].startswith('ES'),f'inglés aplicado {st}')
+    st=pg.evaluate("({lang:document.documentElement.lang,title:document.title,book:document.querySelector('.nav__book').textContent,alt:document.querySelector('.casa__img').alt,meta:document.querySelector('meta[name=description]').content,aria:document.querySelector('#lang').getAttribute('aria-label'),brand:document.querySelector('.hero__tag').textContent})")
+    check(st['lang']=='en' and st['book']=='Book' and st['alt'].startswith('A set table') and 'Open Tuesday' in st['meta'] and 'Spanish' in st['aria'] and st['aria'].startswith('ES'),f'inglés aplicado {st}')
     check(st['brand']=='Cocina de Mar… y Tierra','texto de marca queda en su idioma')
     pg.evaluate("document.querySelector('#resenas').scrollIntoView()"); pg.wait_for_timeout(2500)
     sw=pg.evaluate("(()=>{const s=document.querySelector('#resenasSlider');return {init:s.classList.contains('swiper-initialized'),role:s.querySelector('.swiper-wrapper')?.getAttribute('aria-live'),lab:s.querySelector('.swiper-slide')?.getAttribute('aria-label'),desc:s.getAttribute('aria-roledescription')}})()")
@@ -78,7 +78,26 @@ with sync_playwright() as p:
     pg.set_viewport_size({'width':820,'height':1180}); pg.wait_for_timeout(2500)
     r=pg.evaluate("(()=>{const r=document.querySelector('#apertura').getBoundingClientRect();return [Math.round(r.top),Math.round(r.bottom)]})()")
     check(r[0]<=60 and r[1]>0,f'al cruzar 900 px se conserva la sección {r}')
+    # cruzar el quiebre desde secciones más abajo (iPad)
+    for sec in ('#resenas','#horario','#visitanos'):
+        pg.set_viewport_size({'width':1024,'height':768}); pg.wait_for_timeout(1500)
+        pg.evaluate(f"document.querySelector('{sec}').scrollIntoView()"); pg.wait_for_timeout(1500)
+        pg.set_viewport_size({'width':768,'height':1024}); pg.wait_for_timeout(2500)
+        t=pg.evaluate(f"Math.round(document.querySelector('{sec}').getBoundingClientRect().top)")
+        check(abs(t)<=80,f'iPad horizontal→vertical conserva {sec} (top {t})')
     pg.close()
+    # máscara de la portada medida con el isotipo en reposo
+    pg=b.new_page(viewport={'width':1920,'height':1080}); pg.goto(PUB); pg.wait_for_timeout(4200)
+    tot=pg.evaluate("document.querySelector('.hero').offsetHeight-innerHeight"); pg.evaluate(f'window.scrollTo(0,{int(tot*0.03)})'); pg.wait_for_timeout(1200)
+    m=pg.evaluate("[parseFloat(getComputedStyle(document.querySelector('.hero__photo')).maskSize||getComputedStyle(document.querySelector('.hero__photo')).webkitMaskSize), document.querySelector('.hero__isowrap').getBoundingClientRect().width]")
+    check(abs(m[0]-m[1])<3,f'máscara del isotipo calza con el isotipo {m}')
+    pg.close()
+    # sin GSAP
+    ctx=b.new_context(viewport={'width':1366,'height':800}); pg=ctx.new_page(); errs=[]; pg.on('pageerror',lambda e:errs.append(str(e)))
+    pg.route('**/vendor/gsap.min.js',lambda r:r.abort()); pg.goto(PUB); pg.wait_for_timeout(2000)
+    r=pg.evaluate("({pre:!!document.querySelector('#pre'),red:document.documentElement.classList.contains('reduced'),claim:getComputedStyle(document.querySelector('.hero__claim')).visibility,ov:getComputedStyle(document.querySelector('.frescos__view')).overflowX})")
+    check(r=={'pre':False,'red':True,'claim':'visible','ov':'auto'},f'si GSAP no carga, la página queda completa {r}')
+    ctx.close()
     # movimiento reducido
     ctx=b.new_context(viewport={'width':1366,'height':800},reduced_motion='reduce'); pg=ctx.new_page(); errs=[]; pg.on('pageerror',lambda e:errs.append(str(e)))
     pg.goto(PUB); pg.wait_for_timeout(1500)
