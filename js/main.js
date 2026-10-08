@@ -19,7 +19,7 @@
   let lenis = null;
 
   /* ---------- al cruzar un quiebre (rotar un iPad) se conserva la sección ---------- */
-  const bucket = () => (window.innerWidth <= 700 ? 0 : window.innerWidth <= 1023 ? 1 : 2);
+  const bucket = () => (window.innerWidth <= 700 ? 0 : window.innerWidth <= 1023 ? 1 : 2) + (window.innerWidth > window.innerHeight ? 'h' : 'v');
   const secs = $$('main > section, main > div, .pie');
   let curB = bucket(), anchor = null, recT = 0, frozen = false;
   const takeAnchor = () => {
@@ -36,11 +36,12 @@
     const y = anchor.el.offsetTop + anchor.f * anchor.el.offsetHeight;
     if (lenis) { lenis.resize(); lenis.scrollTo(y, { immediate: true, force: true }); } else window.scrollTo(0, y);
   };
+  let unfreeze = 0;
   window.addEventListener('resize', () => {
     const b = bucket();
     if (b === curB) return;
     curB = b; frozen = true;
-    const done = () => { restore(); setTimeout(() => { frozen = false; takeAnchor(); }, 350); };
+    const done = () => { restore(); clearTimeout(unfreeze); unfreeze = setTimeout(() => { frozen = false; takeAnchor(); }, 450); };
     if (window.ScrollTrigger && !html.classList.contains('reduced')) {
       const once = () => { ScrollTrigger.removeEventListener('refresh', once); done(); };
       ScrollTrigger.addEventListener('refresh', once);
@@ -79,7 +80,7 @@
   const cartaImgs = $$('.carta__img');
   $$('.carta__item').forEach(btn => {
     const show = () => {
-      $$('.carta__item').forEach(b => b.classList.toggle('is-on', b === btn));
+      $$('.carta__item').forEach(b => { b.classList.toggle('is-on', b === btn); b.setAttribute('aria-pressed', String(b === btn)); });
       cartaImgs.forEach(im => im.classList.toggle('is-on', im.dataset.k === btn.dataset.img));
     };
     btn.addEventListener('mouseenter', show);
@@ -103,6 +104,7 @@
       ticking = false;
       navState();
       const y = window.scrollY;
+      if (introTl && introTl.isActive && y > window.innerHeight * 0.5 && introTl.progress() < 1) introTl.progress(1);
       if (!reduced) {
         if (y > lastY + 6 && y > window.innerHeight) nav.classList.add('is-hidden');
         else if (y < lastY - 6) nav.classList.remove('is-hidden');
@@ -165,7 +167,7 @@
   gsap.set(nav, { opacity: 0 });
 
   const fontsReady = (document.fonts && document.fonts.load)
-    ? Promise.race([Promise.allSettled(['400 1em Italiana', 'italic 300 1em Newsreader', '500 1em Jost'].map(f => document.fonts.load(f))), new Promise(r => setTimeout(r, 2500))])
+    ? Promise.race([Promise.allSettled(['400 1em Italiana', 'italic 300 1em Newsreader', '500 1em Jost'].map(f => document.fonts.load(f))), new Promise(r => setTimeout(r, 1200))])
     : Promise.resolve();
   const imgReady = heroImg.complete ? Promise.resolve() : Promise.race([new Promise(r => { heroImg.addEventListener('load', r, { once: true }); heroImg.addEventListener('error', r, { once: true }); }), new Promise(r => setTimeout(r, 3500))]);
   const seen = store.get('amar-intro', true) === '1';
@@ -178,13 +180,14 @@
       .to(iso, { fill: '#42c0ef', strokeWidth: 0, duration: 0.5 * k }, '-=0.25')
       .to('.hero__a', { yPercent: 0, opacity: 1, duration: 1.1 * k }, 0.25 * k)
       .to('.hero__mar', { yPercent: 0, opacity: 1, duration: 1.1 * k }, 0.33 * k)
-      // la ola sube y descubre el plato; el logo no se mueve
+      // la ola sube y descubre el plato; el logo no se mueve (espera la foto si aún no llega)
       .addLabel('tide', 1.35 * k)
+      .addPause('tide', () => { imgReady.then(() => tl.resume()); })
       .to(tide, { level: -10, phase: Math.PI * 1.2, duration: 1.5 * k, ease: 'power3.inOut', onUpdate: drawTide }, 'tide')
       .fromTo(tideEdge, { opacity: 0 }, { opacity: 1, duration: 0.3 * k, ease: 'none' }, 'tide')
       .to(tideEdge, { opacity: 0, duration: 0.4 * k, ease: 'none' }, `tide+=${1.1 * k}`)
       .to(heroImg, { scale: 1.06, duration: 1.6 * k, ease: 'power3.out' }, 'tide')
-      .to(brandBits, { opacity: (i) => (i === 3 ? 0.66 : 1), y: 0, duration: 1 * k, stagger: 0.08 }, `tide+=${0.95 * k}`)
+      .to(brandBits, { opacity: 1, y: 0, duration: 1 * k, stagger: 0.08 }, `tide+=${0.95 * k}`)
       .to(nav, { opacity: 1, duration: 0.8 * k }, `tide+=${1.1 * k}`)
       .add(() => { $('.hero__tide').style.display = 'none'; gsap.to(heroImg, { scale: 1, duration: 14, ease: 'none' }); });
     return tl;
@@ -194,21 +197,22 @@
   const lineSpans = (root) => $$('.line > span', root);
   $$('h2, .quote__big').forEach(h => { if (!h.closest('.hero')) gsap.set(lineSpans(h), { yPercent: 108 }); });
 
-  Promise.all([fontsReady, imgReady]).then(() => {
-    intro();
+  let introTl = null;
+  fontsReady.then(() => {
+    introTl = intro();
 
     /* titulares y citas grandes por líneas */
     $$('h2, .quote__big').forEach(h => {
       const s = lineSpans(h); if (!s.length) return;
-      gsap.to(s, { yPercent: 0, duration: 1.05, ease: EO, stagger: 0.07, scrollTrigger: { trigger: h, start: 'top 86%', once: true } });
+      gsap.to(s, { yPercent: 0, duration: 1.05, ease: EO, stagger: 0.07, scrollTrigger: { trigger: h, start: 'top 86%', toggleActions: 'play none none none' } });
     });
-    gsap.from('.quote--open figcaption, .quote--open .notas', { opacity: 0, y: 18, duration: 1, ease: EO, stagger: 0.12, scrollTrigger: { trigger: '.quote--open', start: 'top 60%', once: true } });
+    gsap.from('.quote--open figcaption, .quote--open .notas', { opacity: 0, y: 18, duration: 1, ease: EO, stagger: 0.12, scrollTrigger: { trigger: '.quote--open', start: 'top 60%', toggleActions: 'play none none none' } });
 
     /* platos: entrada de cada pantalla y apilado (la anterior se hunde) */
     const platos = $$('.plato');
     platos.forEach((p, i) => {
       const fig = $('.plato__fig', p), img = $('img', p);
-      const tl = gsap.timeline({ scrollTrigger: { trigger: p, start: 'top 62%', once: true } });
+      const tl = gsap.timeline({ scrollTrigger: { trigger: p, start: 'top 62%', toggleActions: 'play none none none' } });
       if (fig) {
         tl.fromTo(fig, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.1, ease: 'power4.inOut' }, 0)
           .fromTo(img, { scale: 1.06 }, { scale: 1, duration: 1.6, ease: EO }, 0);
@@ -225,34 +229,36 @@
 
     /* murta sour */
     gsap.fromTo('.bleed__media', { yPercent: -3 }, { yPercent: 3, ease: 'none', scrollTrigger: { trigger: '.bleed', start: 'top bottom', end: 'bottom top', scrub: true } });
-    gsap.from('.bleed__txt .label, .bleed__quote', { opacity: 0, y: 16, duration: 1, ease: EO, stagger: 0.1, scrollTrigger: { trigger: '.bleed__txt', start: 'top 85%', once: true } });
+    gsap.from('.bleed__txt .label, .bleed__quote', { opacity: 0, y: 16, duration: 1, ease: EO, stagger: 0.1, scrollTrigger: { trigger: '.bleed__txt', start: 'top 85%', toggleActions: 'play none none none' } });
 
     /* la carta */
-    gsap.fromTo('.carta__item', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.9, ease: EO, stagger: 0.06, clearProps: 'opacity,transform', scrollTrigger: { trigger: '.carta__list', start: 'top 80%', once: true } });
-    gsap.fromTo('.carta__fig', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2, ease: 'power4.inOut', scrollTrigger: { trigger: '.carta__body', start: 'top 75%', once: true } });
+    gsap.fromTo('.carta__item', { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.9, ease: EO, stagger: 0.06, clearProps: 'opacity,transform', scrollTrigger: { trigger: '.carta__list', start: 'top 80%', toggleActions: 'play none none none' } });
+    gsap.fromTo('.carta__fig', { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2, ease: 'power4.inOut', scrollTrigger: { trigger: '.carta__body', start: 'top 75%', toggleActions: 'play none none none' } });
 
     /* reseñas: la nota sube como un tambor, las estrellas en oro */
     const sn = $('.score__n');
     const fmt = (v) => (lang === 'en' ? v.toFixed(1) : v.toFixed(1).replace('.', ','));
     const sc = { v: 0 };
-    ScrollTrigger.create({ trigger: '.resenas__head', start: 'top 78%', once: true, onEnter: () => {
-      gsap.to(sc, { v: 5, duration: 1.4, ease: 'power3.out', onUpdate: () => { sn.textContent = fmt(sc.v); }, onComplete: () => { sn.textContent = lang === 'en' ? sn.dataset.l : (sn.dataset.es || '5,0'); } });
+    let scored = false;
+    ScrollTrigger.create({ trigger: '.resenas__head', start: 'top 78%', onEnter: () => {
+      if (scored) return; scored = true;
+      gsap.to(sc, { v: 5, duration: 1.4, ease: 'power3.out', onUpdate: () => { sn.textContent = fmt(sc.v); }, onComplete: () => { sn.textContent = lang === 'en' ? sn.dataset.l : sn.dataset.es; } });
       gsap.from('.stars--big i', { opacity: 0, scale: 0.4, duration: 0.6, ease: 'back.out(2)', stagger: 0.06, delay: 0.3 });
       gsap.from('.score__meta .label', { opacity: 0, y: 12, duration: 0.9, ease: EO, stagger: 0.1, delay: 0.5 });
     } });
-    $$('.rs').forEach(r => gsap.from(r, { opacity: 0, y: 34, duration: 1.1, ease: EO, scrollTrigger: { trigger: r, start: 'top 90%', once: true } }));
-    gsap.from('.prensa', { opacity: 0, y: 24, duration: 1, ease: EO, scrollTrigger: { trigger: '.prensa', start: 'top 92%', once: true } });
+    $$('.rs').forEach(r => gsap.from(r, { opacity: 0, y: 34, duration: 1.1, ease: EO, scrollTrigger: { trigger: r, start: 'top 90%', toggleActions: 'play none none none' } }));
+    gsap.from('.prensa', { opacity: 0, y: 24, duration: 1, ease: EO, scrollTrigger: { trigger: '.prensa', start: 'top 92%', toggleActions: 'play none none none' } });
 
     /* fotos con cortina */
     $$('.reveal').forEach(f => {
       const im = $('img', f);
-      gsap.timeline({ scrollTrigger: { trigger: f, start: 'top 84%', once: true } })
+      gsap.timeline({ scrollTrigger: { trigger: f, start: 'top 84%', toggleActions: 'play none none none' } })
         .to(f, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.2, ease: 'power4.inOut' }, 0)
         .fromTo(im, { scale: 1.06 }, { scale: 1, duration: 1.7, ease: EO }, 0);
     });
-    gsap.from('.casa__quote', { opacity: 0, y: 18, duration: 1, ease: EO, scrollTrigger: { trigger: '.casa__side', start: 'top 85%', once: true } });
-    gsap.from('.reservar__txt > .label, .reservar__cta, .reservar__note', { opacity: 0, y: 18, duration: 1, ease: EO, stagger: 0.1, scrollTrigger: { trigger: '.reservar__txt', start: 'top 80%', once: true } });
-    gsap.from('.visita__cols > div', { opacity: 0, y: 20, duration: 1, ease: EO, stagger: 0.08, scrollTrigger: { trigger: '.visita__cols', start: 'top 88%', once: true } });
+    gsap.from('.casa__quote', { opacity: 0, y: 18, duration: 1, ease: EO, scrollTrigger: { trigger: '.casa__side', start: 'top 85%', toggleActions: 'play none none none' } });
+    gsap.from('.reservar__txt > .label, .reservar__cta, .reservar__note', { opacity: 0, y: 18, duration: 1, ease: EO, stagger: 0.1, scrollTrigger: { trigger: '.reservar__txt', start: 'top 80%', toggleActions: 'play none none none' } });
+    gsap.from('.visita__cols > div', { opacity: 0, y: 20, duration: 1, ease: EO, stagger: 0.08, scrollTrigger: { trigger: '.visita__cols', start: 'top 88%', toggleActions: 'play none none none' } });
 
     ScrollTrigger.refresh();
   });

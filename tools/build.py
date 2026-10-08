@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Arma index.html desde src/index.html.
 
-- Reemplaza cada <x-img id="…" …> por un <img> responsivo: srcset 800/1800, width/height reales,
+- Reemplaza cada <x-img id="…" …> por un <img> responsivo: srcset con las variantes de meta.json (ancho nativo y mitad), width/height reales,
   LQIP (fondo borroso), loading/fetchpriority y data-alt-en (tools/alt-en.json).
 - Reemplaza <x-iso class="…"/> por el SVG en línea del isotipo.
 - Falla si falta un texto alternativo (es o en) o una imagen.

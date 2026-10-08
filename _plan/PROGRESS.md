@@ -18,3 +18,9 @@ inicio_ejecucion: 2026-10-07 17:40 (UTC-3)
   - 52 URLs de imagen (src + srcset) responden image/*; 21 <img> con naturalWidth > 0. og:image y og:url en amarchiloe.pages.dev; /assets/og.jpg responde image/jpeg (88 KB). Caché de _headers activa.
   - GitHub: check "Cloudflare Pages" success en 524ba3c; solo rama `main`, predeterminada. Repo público.
   - Pendiente: Pablo confirma con captura la miniatura al compartir en WhatsApp.
+
+## v2 (07-10-2026, noche)
+- Pablo rechazó v1 ("sin glamour"; platos y reseñas deben mandar; fuera la inauguración; "amor" repetido). Cinco agentes (rubro, diseño, carta, imágenes, ghostwriter) → _plan/v2/ y ESTRATEGIA.md. Pablo aprobó: portada con el pulpo; el logo entra y la ola abre la página, el logo se queda (la ola no se repite entre platos); orden aprobado.
+- Construido: portada IG-08 con grade y ola SVG; cita Alejandra; 5 pantallas de platos apiladas con sticky; murta a sangre; carta (Entradas/Principales de su carta impresa en IG-00); reseñas con "5,0" que cuenta; casa; reservar; visítanos compacto sin mapa; barra inferior móvil. Tipografía Italiana + Newsreader + Jost. Swiper y Leaflet fuera.
+- Auditoría independiente v2 (2 agentes) corregida: recarga a mitad de página (triggers once → toggleActions), móvil bajo y horizontal, nota al cambiar idioma, rotación iPad Pro, contraste sobre fotos, foco oculto, LCP (la intro ya no espera la foto para el logo), sizes, zona segura, aria-pressed en la carta, alts, JSON-LD.
+- tools/qa.py v2 en verde.
