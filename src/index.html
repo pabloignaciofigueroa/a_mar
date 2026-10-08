@@ -12,7 +12,7 @@
 <meta property="og:image" content="https://amarchiloe.pages.dev/assets/og.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Logotipo de A MAR sobre el salón del restaurante">
+<meta property="og:image:alt" content="Logotipo de A MAR sobre el pulpo y chapaleles a la chapa">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CL">
 <meta property="og:locale:alternate" content="en_US">
@@ -25,299 +25,273 @@
 <link rel="icon" href="brand/logo/favicon.ico" sizes="48x48">
 <link rel="apple-touch-icon" href="brand/logo/favicon-180.png">
 <link rel="preload" href="assets/fonts/italiana-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/gelasio-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/fonts/gelasio-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="assets/img/salon-1800.webp" as="image" type="image/webp">
+<link rel="preload" href="assets/fonts/newsreader-latin-opsz-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/jost-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/img/hero-d-1920.webp" as="image" type="image/webp" media="(min-width: 701px)">
+<link rel="preload" href="assets/img/hero-m-608.webp" as="image" type="image/webp" media="(max-width: 700px)">
 <link rel="stylesheet" href="css/main.css">
 <script>document.documentElement.classList.replace('no-js','js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('reduced');</script>
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"Restaurant","name":"A MAR","alternateName":"Restaurant A MAR","url":"https://amarchiloe.pages.dev/","image":"https://amarchiloe.pages.dev/assets/og.jpg","telephone":"+56 9 3878 0008","servesCuisine":["Pescados y mariscos","Chilena"],"address":{"@type":"PostalAddress","streetAddress":"Calle Río Gamboa 114, local 109","addressLocality":"Castro","addressRegion":"Los Lagos","postalCode":"5700000","addressCountry":"CL"},"geo":{"@type":"GeoCoordinates","latitude":-42.4805899,"longitude":-73.7720604},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"13:00","closes":"16:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"18:30","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"13:00","closes":"17:00"}],"sameAs":["https://www.instagram.com/amar_chiloe/","https://www.tripadvisor.cl/Restaurant_Review-g317804-d34499300-Reviews-A_Mar_Chiloe-Castro_Isla_Chiloe_Los_Lagos_Region.html"]}
+{"@context":"https://schema.org","@type":"Restaurant","name":"A MAR","alternateName":"Restaurant A MAR","url":"https://amarchiloe.pages.dev/","image":"https://amarchiloe.pages.dev/assets/og.jpg","telephone":"+56 9 3878 0008","servesCuisine":["Pescados y mariscos","Chilena"],"address":{"@type":"PostalAddress","streetAddress":"Calle Río Gamboa 114, local 109","addressLocality":"Castro","addressRegion":"Los Lagos","postalCode":"5700000","addressCountry":"CL"},"geo":{"@type":"GeoCoordinates","latitude":-42.4805899,"longitude":-73.7720604},"aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"9","bestRating":"5"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"13:00","closes":"16:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"18:30","closes":"22:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Sunday","opens":"13:00","closes":"17:00"}],"sameAs":["https://www.instagram.com/amar_chiloe/","https://www.tripadvisor.cl/Restaurant_Review-g317804-d34499300-Reviews-A_Mar_Chiloe-Castro_Isla_Chiloe_Los_Lagos_Region.html"]}
 </script>
 </head>
 <body>
 <a class="skip" href="#main" data-l="Skip to content">Saltar al contenido</a>
 
-<div class="pre" id="pre" aria-hidden="true">
-  <svg class="pre__iso" viewBox="0 0 100 {{ISO_H}}"><path d="{{ISO_D}}"/></svg>
-</div>
-
 <header class="nav" id="nav">
-  <a class="nav__logo" href="#inicio" aria-label="A MAR, inicio" data-aria-en="A MAR, home">
-    <span class="nav__a">A</span> <x-iso class="nav__iso"/> <span class="nav__mar">MAR</span>
-  </a>
+  <a class="nav__logo" href="#inicio" aria-label="A MAR, inicio" data-aria-en="A MAR, home"><span>A</span> <x-iso class="nav__iso"/> <span>MAR</span></a>
+  <nav class="nav__links" aria-label="Secciones" data-aria-en="Sections">
+    <a class="ul" href="#platos" data-l="Dishes">Platos</a>
+    <a class="ul" href="#resenas" data-l="Reviews">Reseñas</a>
+    <a class="ul" href="#visitanos" data-l="Visit us">Visítanos</a>
+  </nav>
   <div class="nav__right">
     <button class="nav__lang" id="lang" type="button" aria-label="EN, ver el sitio en inglés" data-aria-en="ES, view the site in Spanish"><span aria-hidden="true" data-l="ES">EN</span></button>
-    <a class="nav__book magnet" href="https://wa.me/message/PLLYWRQYPFITD1" target="_blank" rel="noopener" data-l="Book">Reservar</a>
-    <button class="nav__menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="menu"><span class="nav__burger" aria-hidden="true"><i></i><i></i></span><span data-l="Menu">Menú</span></button>
+    <a class="btn btn--line nav__book" href="https://wa.me/message/PLLYWRQYPFITD1" target="_blank" rel="noopener"><span data-l="Book">Reservar</span></a>
   </div>
 </header>
 
-<div class="menu" id="menu" role="dialog" aria-modal="true" aria-label="Menú" data-aria-en="Menu" hidden>
-  <button class="menu__close" id="menuClose" type="button"><span data-l="Close">Cerrar</span></button>
-  <div class="menu__inner">
-    <nav class="menu__nav" aria-label="Secciones" data-aria-en="Sections">
-      <ol>
-        <li><a href="#casa" data-img="assets/img/calas-800.webp"><span data-l="The house">La casa</span></a></li>
-        <li><a href="#frescos" data-img="assets/img/ostras-800.webp"><span data-l="Always fresh">Siempre frescos</span></a></li>
-        <li><a href="#apertura" data-img="assets/img/fachada-800.webp"><span data-l="The opening">La apertura</span></a></li>
-        <li><a href="#resenas" data-img="assets/img/espumante-800.webp"><span data-l="Reviews">Reseñas</span></a></li>
-        <li><a href="#horario" data-img="assets/img/rosas-800.webp"><span data-l="Opening hours">Horario</span></a></li>
-        <li><a href="#visitanos" data-img="assets/img/barra-800.webp"><span data-l="Visit us">Visítanos</span></a></li>
-      </ol>
-    </nav>
-    <figure class="menu__fig" aria-hidden="true"><img class="menu__img" src="assets/img/salon-800.webp" alt="" width="800" height="800"></figure>
-    <div class="menu__foot">
-      <p lang="es">Stripcenter Gamboa / Local 109<br>Castro - Chiloé</p>
-      <p><a class="ul" href="tel:+56938780008">+56 9 3878 0008</a><br><a class="ul" href="https://www.instagram.com/amar_chiloe/" target="_blank" rel="noopener">@amar_chiloe</a></p>
-    </div>
-  </div>
-</div>
-
 <main id="main" tabindex="-1">
 
-<!-- 1–2 · Portada y momento memorable -->
-<section class="hero" id="inicio" data-theme="dark" aria-labelledby="h1">
-  <div class="hero__sticky">
-    <div class="hero__photo" aria-hidden="true">
-      <x-img id="salon" class="hero__img" sizes="100vw" alt="" eager/>
-    </div>
-    <div class="hero__brand">
-      <p class="hero__kicker" lang="es">restaurant</p>
-      <h1 class="hero__logo" id="h1" aria-label="A MAR"><span class="hero__a" aria-hidden="true">A</span><span class="hero__isowrap" aria-hidden="true"><x-iso class="hero__iso"/></span><span class="hero__mar" aria-hidden="true">MAR</span></h1>
-      <p class="hero__tag" lang="es">Cocina de Mar… y Tierra</p>
-    </div>
-    <ul class="hero__foot" lang="es">
-      <li>Stripcenter Gamboa / Local 109</li>
-      <li>Castro - Chiloé</li>
-      <li>Abierto de Martes a Domingo · Desde las 13:00 hrs</li>
-    </ul>
-    <p class="hero__cue" aria-hidden="true"><span data-l="Scroll">Desliza</span><i></i></p>
-    <p class="hero__claim" lang="es"><span class="line"><span>Espacio hecho</span></span> <span class="line"><span>con Amor</span></span></p>
+<!-- 1 · Portada: el logo entra, la ola abre la página, el pulpo aparece detrás -->
+<section class="hero" id="inicio" aria-labelledby="h1">
+  <picture class="hero__pic">
+    <source media="(max-width: 700px)" srcset="assets/img/hero-m-304.webp 304w, assets/img/hero-m-608.webp 608w" sizes="100vw">
+    <img class="hero__img" src="assets/img/hero-d-1920.webp" srcset="assets/img/hero-d-960.webp 960w, assets/img/hero-d-1920.webp 1920w" sizes="100vw" width="1920" height="1080" alt="Pulpo y chapaleles a la chapa en salsa roja, con el salón iluminado y desenfocado al fondo" data-alt-en="Griddled octopus with chapaleles in a red sauce, the lit dining room blurred behind" fetchpriority="high" decoding="async">
+  </picture>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <svg class="hero__tide" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><path class="hero__tide-fill" d="M0 0H100V100H0Z"/><path class="hero__tide-edge" d=""/></svg>
+  <div class="hero__brand">
+    <h1 class="hero__logo" id="h1" aria-label="A MAR"><span class="hero__a" aria-hidden="true">A</span><span class="hero__isowrap" aria-hidden="true"><x-iso class="hero__iso"/></span><span class="hero__mar" aria-hidden="true">MAR</span></h1>
+    <p class="hero__tag" lang="es">Cocina de Mar… y Tierra</p>
+    <p class="hero__place label" lang="es">Castro - Chiloé</p>
   </div>
+  <a class="hero__rating label" href="#resenas"><span class="stars" aria-hidden="true">★</span> 5,0 · Google</a>
+  <p class="hero__cap" lang="es">Pulpo y Chapaleles a la Chapa…</p>
 </section>
 
-<!-- 3 · La casa -->
-<section class="casa" id="casa" data-theme="light" aria-labelledby="casa-h">
-  <div class="casa__masses" aria-hidden="true">
-    <div class="mass mass--1" data-speed="0.6"><x-img id="calas" class="mass__img" sizes="(min-width: 900px) 22vw, 40vw" alt=""/></div>
-    <div class="mass mass--2" data-speed="1.25"><x-img id="espumante" class="mass__img" sizes="(min-width: 900px) 16vw, 34vw" alt=""/></div>
-  </div>
-  <div class="casa__text">
-    <h2 class="casa__h" id="casa-h" lang="es" aria-label="Puro Amor en A MAR"><span class="line"><span>Puro Amor</span></span> <span class="line"><span>en A<x-iso class="casa__iso"/>MAR</span></span></h2>
-    <p class="casa__list" lang="es">Ostras · Erizos · Centolla · Pulpo · Chapaleles · Murta</p>
-    <dl class="casa__facts">
-      <div><dt data-l="Since">Desde</dt><dd lang="es">Viernes 08 de Mayo</dd></div>
-      <div><dt data-l="Where">Dónde</dt><dd lang="es">Stripcenter Gamboa / Local 109</dd></div>
-    </dl>
-  </div>
-  <div class="casa__big reveal-img" data-speed="1">
-    <x-img id="mesa" class="casa__img" sizes="(min-width: 900px) 38vw, 88vw" alt="Mesa puesta junto al ventanal, con copas e individual estampado"/>
-  </div>
+<!-- 2 · Cita de apertura -->
+<section class="quote quote--open" aria-label="Reseña destacada" data-aria-en="Featured review">
+  <figure>
+    <blockquote lang="es"><p class="quote__big"><span class="line"><span>El mejor lugar que</span></span> <span class="line"><span>probé en mi visita.</span></span></p></blockquote>
+    <figcaption class="label">Alejandra · <span data-l="via Google">vía Google</span></figcaption>
+  </figure>
+  <ul class="notas label">
+    <li><b>5,0</b> · <span data-l="9 reviews on Google">9 reseñas en Google</span></li>
+    <li><b>4,5</b> · <span data-l="4 reviews on Tripadvisor">4 opiniones en Tripadvisor</span></li>
+  </ul>
 </section>
 
-<!-- 4 · Cinta -->
-<div class="cinta" aria-hidden="true">
-  <div class="cinta__track" lang="es">
-    <span>Ostras Frescas</span><x-iso class="cinta__iso"/><span>Erizos Frescos</span><x-iso class="cinta__iso"/><span>Sorrentinos de Centolla</span><x-iso class="cinta__iso"/><span>Pulpo a la Gallega</span><x-iso class="cinta__iso"/><span>Pulpo y Chapaleles a la Chapa</span><x-iso class="cinta__iso"/><span>Murta Sour</span><x-iso class="cinta__iso"/>
-  </div>
+<!-- 3 · Platos: cada uno en su pantalla; se apilan al bajar -->
+<div class="platos" id="platos" aria-label="Platos" data-aria-en="Dishes" role="region">
+  <article class="plato">
+    <div class="plato__in">
+      <figure class="plato__fig"><x-img id="ostras" class="plato__img" sizes="(min-width: 900px) min(44vw, 690px), 100vw" alt="Bandeja de ostras frescas con limón y alga roja"/></figure>
+      <div class="plato__txt">
+        <p class="label" lang="es">Entradas</p>
+        <h2 class="plato__h" lang="es"><span class="line"><span>Ostras</span></span> <span class="line"><span>Frescas</span></span></h2>
+        <p class="plato__line" lang="es">Siempre</p>
+      </div>
+    </div>
+  </article>
+  <article class="plato plato--rev">
+    <div class="plato__in">
+      <figure class="plato__fig"><x-img id="erizos" class="plato__img" sizes="(min-width: 900px) min(44vw, 690px), 100vw" alt="Erizos servidos en una copa de cristal tallado"/></figure>
+      <div class="plato__txt">
+        <p class="label" lang="es">Entradas</p>
+        <h2 class="plato__h" lang="es"><span class="line"><span>Erizos</span></span> <span class="line"><span>Frescos</span></span></h2>
+        <p class="plato__line" lang="es">Siempre frescos</p>
+      </div>
+    </div>
+  </article>
+  <article class="plato">
+    <div class="plato__in">
+      <figure class="plato__fig"><x-img id="sorrentinos" class="plato__img" sizes="(min-width: 900px) min(44vw, 690px), 100vw" alt="Sorrentinos de centolla en salsa de crema con alga crujiente"/></figure>
+      <div class="plato__txt">
+        <p class="label" lang="es">Principales</p>
+        <h2 class="plato__h" lang="es"><span class="line"><span>Sorrentinos</span></span> <span class="line"><span>de Centolla</span></span></h2>
+        <figure class="plato__quote"><blockquote lang="es"><p>…sorrentinos de centolla 10/10…</p></blockquote><figcaption class="label">Viviana · <span data-l="via Tripadvisor">vía Tripadvisor</span></figcaption></figure>
+      </div>
+    </div>
+  </article>
+  <section class="plato plato--quote" aria-label="Reseña" data-aria-en="Review">
+    <figure class="plato__in quote">
+      <blockquote lang="es"><p class="quote__big"><span class="line"><span>…las mejores ostras, erizos</span></span> <span class="line"><span>y sorrentinos de centolla.</span></span> <span class="line"><span>Un imperdible en Castro.</span></span></p></blockquote>
+      <figcaption class="label">carol · <span data-l="via Tripadvisor">vía Tripadvisor</span></figcaption>
+    </figure>
+  </section>
+  <article class="plato plato--rev">
+    <div class="plato__in">
+      <figure class="plato__fig"><x-img id="pulpo-gallega" class="plato__img" sizes="(min-width: 900px) min(44vw, 690px), 100vw" alt="Pulpo a la gallega sobre papas con aceite de pimentón"/></figure>
+      <div class="plato__txt">
+        <p class="label" lang="es">Principales</p>
+        <h2 class="plato__h" lang="es"><span class="line"><span>Pulpo</span></span> <span class="line"><span>a la Gallega</span></span></h2>
+        <p class="plato__line" lang="es">uno de nuestros imperdibles</p>
+      </div>
+    </div>
+  </article>
 </div>
 
-<!-- 5 · Siempre frescos -->
-<section class="frescos" id="frescos" data-theme="dark" aria-labelledby="frescos-h">
-  <div class="frescos__sticky">
-    <header class="frescos__head">
-      <h2 class="frescos__h" id="frescos-h" lang="es"><span class="line"><span>Siempre frescos</span></span></h2>
-      <p class="frescos__sub" data-l="On Instagram">En Instagram</p>
-    </header>
-    <div class="frescos__view">
-      <ul class="frescos__row">
-        <li class="dish">
-          <figure class="dish__fig"><x-img id="ostras" class="dish__img" sizes="(min-width: 900px) 30vw, 78vw" alt="Bandeja de ostras frescas con limón y alga roja"/></figure>
-          <h3 class="dish__h" lang="es">Ostras Frescas</h3><p class="dish__p" lang="es">Siempre en A MAR</p>
-          <a class="dish__link ul" href="https://www.instagram.com/p/DY8AGF6knnG/" target="_blank" rel="noopener" data-l="View on Instagram">Ver en Instagram</a>
-        </li>
-        <li class="dish">
-          <figure class="dish__fig"><x-img id="sorrentinos" class="dish__img" sizes="(min-width: 900px) 30vw, 78vw" alt="Sorrentinos de centolla en salsa de crema con alga crujiente"/></figure>
-          <h3 class="dish__h" lang="es">Sorrentinos de Centolla</h3><p class="dish__p" lang="es">nuestro Hit de Otoño</p>
-          <a class="dish__link ul" href="https://www.instagram.com/p/DYqbXvLEUGD/" target="_blank" rel="noopener" data-l="View on Instagram">Ver en Instagram</a>
-        </li>
-        <li class="dish">
-          <figure class="dish__fig"><x-img id="erizos" class="dish__img" sizes="(min-width: 900px) 30vw, 78vw" alt="Erizos frescos servidos en copa"/></figure>
-          <h3 class="dish__h" lang="es">Erizos Frescos!</h3><p class="dish__p" lang="es">Siempre frescos</p>
-          <a class="dish__link ul" href="https://www.instagram.com/p/DYXycsgEvVW/" target="_blank" rel="noopener" data-l="View on Instagram">Ver en Instagram</a>
-        </li>
-        <li class="dish">
-          <figure class="dish__fig"><x-img id="pulpo-chapa" class="dish__img" sizes="(min-width: 900px) 30vw, 78vw" alt="Pulpo y chapaleles (masa de papa chilota) a la chapa en salsa roja"/></figure>
-          <h3 class="dish__h" lang="es">Pulpo y Chapaleles a la Chapa…</h3><p class="dish__p" lang="es">otro exitazo</p>
-          <a class="dish__link ul" href="https://www.instagram.com/p/DYUfRMTkn0P/" target="_blank" rel="noopener" data-l="View on Instagram">Ver en Instagram</a>
-        </li>
-        <li class="dish">
-          <figure class="dish__fig"><x-img id="pulpo-gallega" class="dish__img" sizes="(min-width: 900px) 30vw, 78vw" alt="Pulpo a la gallega sobre papas con aceite de pimentón"/></figure>
-          <h3 class="dish__h" lang="es">Pulpo a la Gallega…</h3><p class="dish__p" lang="es">uno de nuestros imperdibles</p>
-          <a class="dish__link ul" href="https://www.instagram.com/p/DYIjCpxEaM6/" target="_blank" rel="noopener" data-l="View on Instagram">Ver en Instagram</a>
-        </li>
-      </ul>
-    </div>
-    <div class="frescos__bar" aria-hidden="true"><i></i></div>
+<!-- 4 · Murta sour a sangre -->
+<section class="bleed bleed--murta" aria-labelledby="murta-h">
+  <div class="bleed__media">
+    <picture>
+      <source media="(max-width: 700px)" srcset="assets/img/murta-m-576.webp 576w, assets/img/murta-m-1152.webp 1152w" sizes="100vw">
+      <x-img id="murta" class="bleed__img" sizes="100vw" alt="Copas de murta sour alineadas en la barra"/>
+    </picture>
+  </div>
+  <div class="bleed__txt">
+    <p class="label" data-l="Bar">Barra</p>
+    <h2 class="bleed__h" id="murta-h" lang="es"><span class="line"><span>Murta Sour</span></span></h2>
+    <figure class="bleed__quote"><blockquote lang="es"><p>…dos murta sour (perfectos)…</p></blockquote><figcaption class="label">Mauricio · <span data-l="via Google">vía Google</span></figcaption></figure>
   </div>
 </section>
 
-<!-- 6 · Cocina abierta -->
-<section class="bleed bleed--cocina" data-theme="dark" aria-labelledby="cocina-h">
-  <div class="bleed__media"><x-img id="cocina" class="bleed__img" sizes="100vw" alt="Cocina abierta vista desde el pase, con lámparas de calor plateadas"/></div>
-  <h2 class="bleed__h" id="cocina-h" lang="es"><span class="line"><span>Cocina Abierta</span></span></h2>
-</section>
-
-<!-- 7 · La apertura -->
-<section class="apertura" id="apertura" data-theme="light" aria-labelledby="apertura-h">
-  <header class="apertura__head">
-    <h2 class="apertura__h" id="apertura-h"><span class="line"><span data-l="The opening">La apertura</span></span></h2>
-    <p class="apertura__sub"><span data-l="April – May 2026">Abril – Mayo 2026</span></p>
+<!-- 5 · La carta -->
+<section class="carta" id="carta" aria-labelledby="carta-h">
+  <header class="carta__head">
+    <h2 class="carta__h" id="carta-h"><span class="line"><span data-l="The menu">La carta</span></span></h2>
+    <p class="carta__sub" lang="es">Cocina de Mar… y Tierra</p>
   </header>
-  <div class="apertura__body">
-    <svg class="apertura__wave" viewBox="0 0 40 1000" preserveAspectRatio="none" aria-hidden="true"><path pathLength="1" d="M20 0 C 36 62, 4 125, 20 187 S 36 312, 20 375 S 4 500, 20 562 S 36 687, 20 750 S 4 875, 20 1000"/></svg>
-    <ol class="hitos">
-      <li class="hito hito--text">
-        <time datetime="2026-04-25"><span>25</span> <span data-l="Apr">abr</span></time>
-        <p class="hito__p" lang="es">Pronto… una invitación a <span class="nw">A<x-iso class="hito__iso"/>MAR!!</span></p>
-      </li>
-      <li class="hito">
-        <time datetime="2026-04-26"><span>26</span> <span data-l="Apr">abr</span></time>
-        <p class="hito__p" lang="es">Pronto…</p>
-        <figure class="hito__fig"><x-img id="individual" class="hito__img" sizes="(min-width: 900px) 30vw, 70vw" alt="Individual estampado con el logotipo de A MAR, copa y florero dorado"/></figure>
-      </li>
-      <li class="hito">
-        <time datetime="2026-04-27"><span>27</span> <span data-l="Apr">abr</span></time>
-        <p class="hito__p" lang="es">Casi Listos!</p>
-        <figure class="hito__fig"><x-img id="barra" class="hito__img" sizes="(min-width: 900px) 30vw, 70vw" alt="La barra con listones de madera, pisos altos, planta y lámpara de mimbre"/></figure>
-      </li>
-      <li class="hito">
-        <time datetime="2026-04-28"><span>28</span> <span data-l="Apr">abr</span></time>
-        <p class="hito__p" lang="es">Afinando Detalles…</p>
-        <figure class="hito__fig"><x-img id="espejo" class="hito__img" sizes="(min-width: 900px) 30vw, 70vw" alt="Espejo redondo que refleja el azulejo y el salón"/></figure>
-      </li>
-      <li class="hito">
-        <time datetime="2026-04-29"><span>29</span> <span data-l="Apr">abr</span></time>
-        <p class="hito__p" lang="es">Salud! Por los nuevos proyectos 👊</p>
-        <figure class="hito__fig"><x-img id="espumante" class="hito__img" sizes="(min-width: 900px) 30vw, 70vw" alt="Una mano levanta una copa de espumante en el salón iluminado"/></figure>
-      </li>
-      <li class="hito">
-        <time datetime="2026-04-30"><span>30</span> <span data-l="Apr">abr</span></time>
-        <p class="hito__p" lang="es">El Mejor Murta Sour estará en “A MAR”</p>
-        <figure class="hito__fig"><x-img id="murta" class="hito__img" sizes="(min-width: 900px) 30vw, 70vw" alt="Cuatro copas de murta sour alineadas en la barra"/></figure>
-      </li>
-      <li class="hito">
-        <time datetime="2026-05-07"><span>07</span> <span data-l="May">may</span></time>
-        <p class="hito__p" lang="es">✨Apertura✨… Viernes 08 de Mayo / Desde las 19:00 hrs</p>
-        <figure class="hito__fig"><x-img id="textil" class="hito__img" sizes="(min-width: 900px) 30vw, 70vw" alt="Textil floral pintado, cruzado por una franja azul con el logotipo de A MAR"/></figure>
-      </li>
-      <li class="hito">
-        <time datetime="2026-05-08"><span>08</span> <span data-l="May">may</span></time>
-        <p class="hito__p" lang="es">Día Soñado!</p>
-        <figure class="hito__fig"><x-img id="fachada" class="hito__img" sizes="(min-width: 900px) 30vw, 70vw" alt="La fachada de A MAR de noche, bajo su letrero luminoso"/></figure>
-      </li>
-    </ol>
+  <div class="carta__body">
+    <div class="carta__list">
+      <div class="carta__grp">
+        <h3 class="label" lang="es">Entradas</h3>
+        <ul>
+          <li><button class="carta__item is-on" type="button" data-img="ostras"><span class="carta__name" lang="es">Ostras Frescas</span><span class="carta__note" lang="es">Siempre</span></button></li>
+          <li><button class="carta__item" type="button" data-img="erizos"><span class="carta__name" lang="es">Erizos Frescos</span><span class="carta__note" lang="es">Siempre frescos</span></button></li>
+          <li><button class="carta__item" type="button" data-img="pulpo-chapa"><span class="carta__name" lang="es">Pulpo y Chapaleles a la Chapa</span></button></li>
+        </ul>
+      </div>
+      <div class="carta__grp">
+        <h3 class="label" lang="es">Principales</h3>
+        <ul>
+          <li><button class="carta__item" type="button" data-img="sorrentinos"><span class="carta__name" lang="es">Sorrentinos de Centolla</span></button></li>
+          <li><button class="carta__item" type="button" data-img="pulpo-gallega"><span class="carta__name" lang="es">Pulpo a la Gallega</span><span class="carta__note" lang="es">uno de nuestros imperdibles</span></button></li>
+        </ul>
+      </div>
+      <div class="carta__grp">
+        <h3 class="label" data-l="Bar">Barra</h3>
+        <ul>
+          <li><button class="carta__item" type="button" data-img="murta-m"><span class="carta__name" lang="es">Murta Sour</span></button></li>
+        </ul>
+      </div>
+      <p class="carta__foot"><span data-l="Full menu and daily specials at the restaurant">Carta completa y sugerencias del día en el local</span> · <a class="ul" href="https://wa.me/message/PLLYWRQYPFITD1" target="_blank" rel="noopener" data-l="Ask on WhatsApp">Consulta por WhatsApp</a></p>
+    </div>
+    <figure class="carta__fig" aria-hidden="true">
+      <x-img id="ostras" class="carta__img is-on" sizes="(min-width: 900px) 36vw, 0px" alt="" data-k="ostras"/>
+      <x-img id="erizos" class="carta__img" sizes="(min-width: 900px) 36vw, 0px" alt="" data-k="erizos"/>
+      <x-img id="pulpo-chapa" class="carta__img" sizes="(min-width: 900px) 36vw, 0px" alt="" data-k="pulpo-chapa"/>
+      <x-img id="sorrentinos" class="carta__img" sizes="(min-width: 900px) 36vw, 0px" alt="" data-k="sorrentinos"/>
+      <x-img id="pulpo-gallega" class="carta__img" sizes="(min-width: 900px) 36vw, 0px" alt="" data-k="pulpo-gallega"/>
+      <x-img id="murta-m" class="carta__img" sizes="(min-width: 900px) 36vw, 0px" alt="" data-k="murta-m"/>
+    </figure>
   </div>
 </section>
 
-<!-- 8 · Reseñas -->
-<section class="resenas" id="resenas" data-theme="light" aria-labelledby="resenas-h">
+<!-- 6 · Reseñas -->
+<section class="resenas" id="resenas" aria-labelledby="resenas-h">
   <header class="resenas__head">
-    <h2 class="resenas__h" id="resenas-h"><span class="line"><span data-l="Reviews">Reseñas</span></span></h2>
-    <ul class="notas">
-      <li><a href="https://www.google.com/maps/place/Restaurant+A+Mar/@-42.4805899,-73.7720604,17z" target="_blank" rel="noopener"><b data-l="5.0">5,0</b><span class="vh" data-l="out of 5">de 5</span><span class="notas__stars" aria-hidden="true">★★★★★</span><span><span data-l="9 reviews on Google">9 reseñas en Google</span></span></a></li>
-      <li><a href="https://www.tripadvisor.cl/Restaurant_Review-g317804-d34499300-Reviews-A_Mar_Chiloe-Castro_Isla_Chiloe_Los_Lagos_Region.html" target="_blank" rel="noopener"><b data-l="4.5">4,5</b><span class="vh" data-l="out of 5">de 5</span><span class="notas__stars" aria-hidden="true">★★★★<s>★</s></span><span><span data-l="4 reviews on Tripadvisor">4 opiniones en Tripadvisor</span></span></a></li>
-    </ul>
+    <h2 class="vh" id="resenas-h" data-l="Reviews">Reseñas</h2>
+    <p class="score" aria-hidden="true"><span class="score__n" data-l="5.0">5,0</span></p>
+    <div class="score__meta">
+      <p class="stars stars--big" aria-hidden="true"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></p>
+      <p class="label"><a class="ul" href="https://www.google.com/maps/place/Restaurant+A+Mar/@-42.4805899,-73.7720604,17z" target="_blank" rel="noopener"><span data-l="5.0 out of 5 · 9 reviews on Google">5,0 de 5 · 9 reseñas en Google</span></a></p>
+      <p class="label"><a class="ul" href="https://www.tripadvisor.cl/Restaurant_Review-g317804-d34499300-Reviews-A_Mar_Chiloe-Castro_Isla_Chiloe_Los_Lagos_Region.html" target="_blank" rel="noopener"><span data-l="4.5 out of 5 · 4 reviews on Tripadvisor">4,5 de 5 · 4 opiniones en Tripadvisor</span></a></p>
+    </div>
   </header>
-  <div class="resenas__slider swiper" id="resenasSlider">
-    <div class="swiper-wrapper">
-      <figure class="swiper-slide rs"><blockquote lang="es"><p>El mejor lugar que probé en mi visita. La comida es alucinante♥️</p></blockquote><figcaption>Alejandra · <span data-l="via Google">vía Google</span></figcaption></figure>
-      <figure class="swiper-slide rs"><blockquote lang="es"><p>Excelente la atención, el lugar es precioso y la comida insuperable; las mejores ostras, erizos y sorrentinos de centolla. Un imperdible en Castro.</p></blockquote><figcaption>carol · <span data-l="via Tripadvisor">vía Tripadvisor</span></figcaption></figure>
-      <figure class="swiper-slide rs"><blockquote lang="es"><p>Nos fuimos de restorán a- mar con el corazón contento y la promesa de volver.</p></blockquote><figcaption>Mauricio · <span data-l="via Google">vía Google</span></figcaption></figure>
-      <figure class="swiper-slide rs"><blockquote lang="de"><p>Essen war hervorragend… Sehr empfehlenswert</p></blockquote><figcaption>Peter · <span data-l="via Google">vía Google</span></figcaption></figure>
-      <figure class="swiper-slide rs"><blockquote lang="es"><p>Un lugar distinto que vale totalmente la pena conocer en Castro. 🌊✨</p></blockquote><figcaption>Sammy · <span data-l="via Google">vía Google</span></figcaption></figure>
-      <figure class="swiper-slide rs"><blockquote lang="es"><p>Muy buena experiencia, gratamente sorprendidos, el lugar es acogedor, la comida increíble… sorrentinos de centolla 10/10…</p></blockquote><figcaption>Viviana · <span data-l="Miami, Florida, United States">Miami, Florida, Estados Unidos</span> · <span data-l="via Tripadvisor">vía Tripadvisor</span></figcaption></figure>
-      <figure class="swiper-slide rs"><blockquote lang="es"><p>Es un lugar lindo, buena atención y la comida es espectacular, lo mejor que probé en Castro. Recomiendo los sorrentinos…</p></blockquote><figcaption>Catalina · <span data-l="via Google">vía Google</span></figcaption></figure>
-      <figure class="swiper-slide rs"><blockquote lang="es"><p>…la corvina estaba demasiado fresca…</p></blockquote><figcaption>Alejandra · <span data-l="via Google">vía Google</span></figcaption></figure>
-      <figure class="swiper-slide rs"><blockquote lang="es"><p>Muy buenas propuestas de platos, rico, fresco. Atención muy buena. Se recomienda 100%</p></blockquote><figcaption>Andres · <span data-l="via Google">vía Google</span></figcaption></figure>
-      <figure class="swiper-slide rs"><blockquote lang="es"><p>De lux exquisito y super bien atendido</p></blockquote><figcaption>Abel · <span data-l="via Tripadvisor">vía Tripadvisor</span></figcaption></figure>
-    </div>
-    <div class="resenas__ctrl">
-      <button class="resenas__btn resenas__prev magnet" type="button" aria-label="Reseña anterior" data-aria-en="Previous review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
-      <p class="resenas__count" aria-hidden="true"><span id="rsNow">01</span> / <span id="rsAll">10</span></p>
-      <button class="resenas__btn resenas__next magnet" type="button" aria-label="Reseña siguiente" data-aria-en="Next review"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
-    </div>
+  <div class="rs-grid">
+    <figure class="rs rs--a">
+      <blockquote lang="es"><p>Es un lugar lindo, buena atención y la comida es espectacular, lo mejor que probé en Castro. Recomiendo los sorrentinos…</p></blockquote>
+      <figcaption class="label">Catalina · <span data-l="via Google">vía Google</span></figcaption>
+    </figure>
+    <figure class="rs rs--b">
+      <blockquote lang="es"><p>Un lugar distinto que vale totalmente la pena conocer en Castro. 🌊✨</p></blockquote>
+      <figcaption class="label">Sammy · <span data-l="via Google">vía Google</span></figcaption>
+    </figure>
+    <figure class="rs rs--c">
+      <blockquote lang="es"><p>De lux exquisito y super bien atendido</p></blockquote>
+      <figcaption class="label">Abel · <span data-l="via Tripadvisor">vía Tripadvisor</span></figcaption>
+    </figure>
+    <figure class="rs rs--d">
+      <blockquote lang="es"><p>Muy buenas propuestas de platos, rico, fresco. Atención muy buena.</p></blockquote>
+      <figcaption class="label">Andres · <span data-l="via Google">vía Google</span></figcaption>
+    </figure>
+    <figure class="rs rs--e">
+      <blockquote lang="de"><p>Essen war hervorragend… Sehr empfehlenswert</p></blockquote>
+      <figcaption class="label">Peter · <span data-l="via Google">vía Google</span></figcaption>
+    </figure>
   </div>
   <figure class="prensa">
     <blockquote lang="es"><p>…destaca por su propuesta gastronómica centrada en los productos del mar y la cocina chilota contemporánea.</p></blockquote>
-    <figcaption>NiTanRetro FM · <span data-l="Instagram, June 2026">Instagram, junio 2026</span></figcaption>
+    <figcaption class="label">NiTanRetro FM · <span data-l="June 2026">junio 2026</span></figcaption>
   </figure>
-  <span class="drag" aria-hidden="true"><span data-l="Drag">Arrastrar</span></span>
 </section>
 
-<!-- 9 · Horario -->
-<section class="horario" id="horario" data-theme="dark" aria-labelledby="horario-h">
-  <div class="lamina">
-    <h2 class="lamina__h" id="horario-h" lang="es"><span><span class="bar" aria-hidden="true">|</span> HORARIO <span class="bar" aria-hidden="true">|</span></span><small>DE ATENCIÓN</small></h2>
-    <x-iso class="lamina__iso"/>
-    <dl class="lamina__dl" lang="es">
-      <div data-days="2,3,4,5,6"><dt><span class="bar" aria-hidden="true">|</span> Martes a Sábado <span class="bar" aria-hidden="true">|</span></dt><dd>13:00 hrs a 16:30 hrs</dd><dd>18:30 hrs a 22:00 hrs</dd></div>
-            <div data-days="0"><dt><span class="bar" aria-hidden="true">|</span> Domingo <span class="bar" aria-hidden="true">|</span></dt><dd>13:00 hrs a 17:00 hrs</dd></div>
-            <div data-days="1"><dt><span class="bar" aria-hidden="true">|</span> Lunes <span class="bar" aria-hidden="true">|</span></dt><dd>Cerrado</dd></div>
-    </dl>
-    <p class="estado" id="estado" aria-live="polite"></p>
-  </div>
-  <figure class="horario__fig reveal-img"><x-img id="rosas" class="horario__img" sizes="(min-width: 900px) 40vw, 88vw" alt="Rosas rojas en un jarro blanco junto a un cartel que dice Abierto"/></figure>
-</section>
-
-<!-- 10 · Visítanos -->
-<section class="visita" id="visitanos" data-theme="light" aria-labelledby="visita-h">
-  <div class="visita__text">
-    <h2 class="visita__h" id="visita-h"><span class="line"><span data-l="Visit us">Visítanos</span></span></h2>
-    <address class="visita__addr" lang="es">Stripcenter Gamboa / Local 109<br>Calle Río Gamboa 114<br>Castro - Chiloé</address>
-    <p class="visita__links">
-      <a class="btn magnet" href="https://www.google.com/maps/dir/?api=1&amp;destination=-42.4805899,-73.7720604" target="_blank" rel="noopener"><span data-l="Directions">Cómo llegar</span></a>
-      <a class="ul" href="https://www.tripadvisor.cl/Restaurant_Review-g317804-d34499300-Reviews-A_Mar_Chiloe-Castro_Isla_Chiloe_Los_Lagos_Region.html" target="_blank" rel="noopener" data-l="See on Tripadvisor">Ver en Tripadvisor</a>
-    </p>
-  </div>
-  <div class="mapa" id="mapa" role="img" aria-label="Mapa: A MAR en el Stripcenter Gamboa, junto al río Gamboa, Castro" data-aria-en="Map: A MAR at Stripcenter Gamboa, beside the Gamboa river, Castro">
-    <svg class="mapa__plan" viewBox="0 0 600 450" aria-hidden="true">
-      <rect width="600" height="450"/>
-      <path class="mapa__rio" d="M-10 120 C 90 140, 170 90, 250 150 S 330 300, 300 380 S 330 470, 360 470"/>
-      <path class="mapa__calle" d="M90 470 C 160 360, 260 330, 360 345 S 520 300, 620 250"/>
-      <path class="mapa__calle mapa__calle--fina" d="M330 0 L 352 345"/>
-      <text x="168" y="118" class="mapa__t">río Gamboa</text>
-      <text x="430" y="292" class="mapa__t">Diego Portales</text>
-      <g transform="translate(322 300)"><circle r="22" class="mapa__pin"/><path transform="translate(-13 -11) scale(.26)" class="mapa__iso" d="{{ISO_D}}"/></g>
-    </svg>
+<!-- 7 · La casa -->
+<section class="casa" aria-label="El local" data-aria-en="The restaurant">
+  <figure class="casa__salon reveal"><x-img id="salon" class="casa__img" sizes="(min-width: 900px) min(76vw, 1080px), 100vw" alt="El salón de A MAR: sillas de madera clara, mesas blancas y muro de azulejo verde azulado"/></figure>
+  <div class="casa__row">
+    <figure class="casa__barra reveal"><x-img id="barra" class="casa__img" sizes="(min-width: 900px) 34vw, 100vw" alt="La barra con listones de madera, pisos altos, planta y lámpara de mimbre"/></figure>
+    <div class="casa__side">
+      <figure class="casa__quote"><blockquote lang="es"><p>…la decoración muy acogedora, iluminación ideal…</p></blockquote><figcaption class="label">Mauricio · <span data-l="via Google">vía Google</span></figcaption></figure>
+      <figure class="casa__cocina reveal"><x-img id="cocina" class="casa__img" sizes="(min-width: 900px) 24vw, 100vw" alt="La cocina abierta vista desde el pase, con lámparas de calor plateadas"/><figcaption class="casa__cap" lang="es">Cocina Abierta</figcaption></figure>
+    </div>
   </div>
 </section>
 
-<!-- 11 · Reservar -->
-<section class="bleed bleed--reservar" id="reservar" data-theme="dark" aria-labelledby="reservar-h">
-  <div class="bleed__media"><x-img id="salon" class="bleed__img" sizes="100vw" alt="El salón de A MAR: sillas de madera clara, mesas blancas y muro de azulejo verde azulado"/></div>
-  <div class="reservar__in">
-    <p class="reservar__k" lang="es">Reservas</p>
+<!-- 8 · Reservar -->
+<section class="reservar" id="reservar" aria-labelledby="reservar-h">
+  <figure class="reservar__fig reveal"><x-img id="fachada" class="reservar__img" sizes="(min-width: 900px) min(38vw, 600px), 100vw" alt="La fachada de A MAR de noche, bajo su letrero luminoso"/></figure>
+  <div class="reservar__txt">
+    <p class="label" lang="es">Reservas</p>
     <h2 class="reservar__h" id="reservar-h" lang="es"><span class="line"><span>Los Esperamos</span></span> <span class="line"><span>en Chiloé!</span></span></h2>
     <p class="reservar__cta">
-      <a class="btn btn--light magnet" href="https://wa.me/message/PLLYWRQYPFITD1" target="_blank" rel="noopener"><span data-l="Book on WhatsApp">Reservar por WhatsApp</span></a>
-      <a class="ul" href="tel:+56938780008">+56 9 3878 0008</a>
+      <a class="btn btn--fill" href="https://wa.me/message/PLLYWRQYPFITD1" target="_blank" rel="noopener"><span data-l="Book on WhatsApp">Reservar por WhatsApp</span></a>
+      <a class="ul reservar__tel" href="tel:+56938780008">+56 9 3878 0008</a>
     </p>
+    <figure class="reservar__note"><blockquote lang="es"><p>…un local pequeño (11 mesas aprox)…</p></blockquote><figcaption class="label">Mauricio · <span data-l="via Google">vía Google</span></figcaption></figure>
+  </div>
+</section>
+
+<!-- 9 · Visítanos (compacto) -->
+<section class="visita" id="visitanos" aria-labelledby="visita-h">
+  <h2 class="visita__h" id="visita-h"><span class="line"><span data-l="Visit us">Visítanos</span></span></h2>
+  <div class="visita__cols">
+    <div>
+      <h3 class="label" lang="es" data-l="Opening hours">Horario de Atención</h3>
+      <dl class="horas">
+        <div><dt data-l="Tuesday to Saturday">Martes a Sábado</dt><dd>13:00 hrs a 16:30 hrs<br>18:30 hrs a 22:00 hrs</dd></div>
+        <div><dt data-l="Sunday">Domingo</dt><dd>13:00 hrs a 17:00 hrs</dd></div>
+        <div><dt data-l="Monday">Lunes</dt><dd data-l="Closed">Cerrado</dd></div>
+      </dl>
+    </div>
+    <div>
+      <h3 class="label" data-l="Address">Dirección</h3>
+      <address lang="es">Stripcenter Gamboa / Local 109<br>Calle Río Gamboa 114<br>Castro - Chiloé</address>
+      <p><a class="ul" href="https://www.google.com/maps/dir/?api=1&amp;destination=-42.4805899,-73.7720604" target="_blank" rel="noopener" data-l="Directions">Cómo llegar</a></p>
+    </div>
+    <div>
+      <h3 class="label" data-l="Contact">Contacto</h3>
+      <p><a class="ul" href="tel:+56938780008">+56 9 3878 0008</a><br><a class="ul" href="https://wa.me/message/PLLYWRQYPFITD1" target="_blank" rel="noopener">WhatsApp</a><br><a class="ul" href="https://www.instagram.com/amar_chiloe/" target="_blank" rel="noopener">@amar_chiloe</a><br><a class="ul" href="https://www.tripadvisor.cl/Restaurant_Review-g317804-d34499300-Reviews-A_Mar_Chiloe-Castro_Isla_Chiloe_Los_Lagos_Region.html" target="_blank" rel="noopener">Tripadvisor</a></p>
+    </div>
   </div>
 </section>
 
 </main>
 
-<footer class="pie" data-theme="dark">
-  <div class="pie__logo"><span class="pie__a">A</span><x-iso class="pie__iso"/><span class="pie__mar">MAR</span></div>
+<footer class="pie">
+  <p class="pie__logo" aria-label="A MAR"><span aria-hidden="true">A</span><x-iso class="pie__iso"/><span aria-hidden="true">MAR</span></p>
   <p class="pie__tag" lang="es">Cocina de Mar… y Tierra</p>
-  <div class="pie__cols">
-    <p lang="es">Stripcenter Gamboa / Local 109<br>Castro - Chiloé</p>
-    <p lang="es">Abierto de Martes a Domingo<br>Desde las 13:00 hrs</p>
-    <p><a class="ul" href="tel:+56938780008">+56 9 3878 0008</a><br><a class="ul" href="https://www.instagram.com/amar_chiloe/" target="_blank" rel="noopener">@amar_chiloe</a></p>
-  </div>
-  <p class="pie__legal"><span>© 2026 Restaurant A MAR</span><span data-l="Sample site made with @amar_chiloe's public material">Sitio de muestra hecho con el material público de @amar_chiloe</span></p>
+  <p class="pie__legal label"><span>© 2026 Restaurant A MAR</span><span data-l="Sample site made with @amar_chiloe's public material">Sitio de muestra hecho con el material público de @amar_chiloe</span></p>
 </footer>
+
+<div class="mbar" id="mbar">
+  <a href="https://www.google.com/maps/dir/?api=1&amp;destination=-42.4805899,-73.7720604" target="_blank" rel="noopener" data-l="Directions">Cómo llegar</a>
+  <a class="mbar__book" href="https://wa.me/message/PLLYWRQYPFITD1" target="_blank" rel="noopener" data-l="Book">Reservar</a>
+</div>
+
+<div class="grain" aria-hidden="true"></div>
 
 <script src="vendor/gsap.min.js" defer></script>
 <script src="vendor/ScrollTrigger.min.js" defer></script>

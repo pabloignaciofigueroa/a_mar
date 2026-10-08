@@ -9,7 +9,7 @@ with sync_playwright() as p:
     b=p.chromium.launch()
     pg=b.new_page(viewport={'width':W,'height':H})
     errs=[]; pg.on('pageerror',lambda e:errs.append(str(e))); pg.on('console',lambda m: errs.append('console:'+m.text) if m.type=='error' else None)
-    pg.goto(url); pg.wait_for_timeout(3500)
+    pg.goto(url); pg.wait_for_timeout(6000)
     total=pg.evaluate('document.documentElement.scrollHeight')
     y=0;i=0
     while y<total and i<40:

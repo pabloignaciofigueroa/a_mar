@@ -37,10 +37,10 @@ def img(m):
     alt_en = ALT_EN.get(i) if alt else ''
     if alt and not alt_en:
         errors.append(f'falta alt en inglés: {i}')
-    s, l = meta['src']['800'], meta['src']['1800']
-    srcset = f'{s["path"]} {s["w"]}w' + (f', {l["path"]} {l["w"]}w' if l['w'] > s['w'] else '')
+    vs = meta['src']
+    srcset = ', '.join(f'{v["path"]} {v["w"]}w' for v in vs)
     eager = 'eager' in a
-    out = (f'<img class="{a.get("class", "")}" src="{l["path"] if eager else s["path"]}" srcset="{srcset}" '
+    out = (f'<img class="{a.get("class", "")}" src="{vs[-1]["path"]}" srcset="{srcset}" '
            f'sizes="{a.get("sizes", "100vw")}" width="{meta["w"]}" height="{meta["h"]}" alt="{html.escape(alt)}"')
     if alt_en:
         out += f' data-alt-en="{html.escape(alt_en)}"'
